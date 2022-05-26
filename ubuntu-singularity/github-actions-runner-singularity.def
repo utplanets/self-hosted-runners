@@ -4,18 +4,17 @@ Stage: build
 
 
 %files
-    ./entrypoint.sh /
+    ./entrypoint.sh
 
 %environment
     export LC_ALL=C
     export DEBIAN_FRONTEND=noninteractive
-    export RUNNER_VERSION=2.267.1
+    export RUNNER_VERSION=2.288.1
     export AGENT_TOOLSDIRECTORY=/opt/hostedtoolcache
 
 %post
-    export RUNNER_VERSION=2.267.1
-    chmod +x /entrypoint.sh
-
+    export RUNNER_VERSION=2.288.1
+    apt-get update -y
     apt-get install -y --no-install-recommends software-properties-common
     add-apt-repository universe
     add-apt-repository multiverse
@@ -40,4 +39,4 @@ Stage: build
 %runscript
     echo "Container was created $NOW"
     echo "Arguments received: $*"
-    exec /bin/bash /entrypoint.sh "$@"
+    exec /bin/bash ./entrypoint.sh "$@"
