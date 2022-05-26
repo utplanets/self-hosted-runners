@@ -31,5 +31,6 @@
       vars:
         access_token: "{{ lookup('env','PAT') }}"
         runner_dir: /opt/actions-runner/{{ github_account }}/{{ github_repo }}
+        runner_user: vagrant
       tags:
         - uninstall
